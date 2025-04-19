@@ -1,91 +1,119 @@
 # DeFi Insurance Platform
 
 ## Overview
-A decentralized insurance platform built on Flow blockchain, offering protection against crypto-related risks like exchange hacks, smart contract failures, and wallet compromises. The platform integrates with Flow for wallet management and Humanity Protocol for identity verification.
+A decentralized insurance platform built on ICP blockchain, offering protection against crypto-related risks like exchange hacks, smart contract failures, and wallet compromises. The platform integrates with Plug wallet for ICP connectivity.
 
 ## Technical Stack
 - Next.js + TypeScript
-- Flow Blockchain + Cadence Smart Contracts
-- Humanity Protocol for Identity Verification
+- ICP Blockchain + Canister Smart Contracts
 - TailwindCSS for styling
 
 ## Smart Contracts
-The platform uses two main Cadence smart contracts:
+The platform uses two main Canister smart contracts:
 
-### InsurancePool.cdc
+### InsurancePool
 Manages staking pools where users can provide liquidity:
 - Stake management
 - APY calculations
 - Lockup periods
 - Rewards distribution
 
-### InsurancePolicy.cdc
+### InsurancePolicy
 Handles insurance policies and claims:
 - Policy creation and management
 - Claims processing
 - Coverage tracking
 - Premium calculations
 
-## Flow Integration
+## Plug Wallet Integration
 
 ### Wallet Connection
 ```typescript
-import { fcl } from "@onflow/fcl";
-
-// Configure FCL
-fcl.config({
-  "app.detail.title": "DeFi Insurance",
-  "app.detail.icon": "https://your-insurance-app.com/icon.png",
-  "accessNode.api": "https://rest-testnet.onflow.org",
-  "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
-})
+// Define type for window with IC Plug
+declare global {
+  interface Window {
+    ic?: {
+      plug?: {
+        requestConnect: () => Promise<boolean>;
+        isConnected: () => Promise<boolean>;
+        agent?: any;
+        principalId?: string;
+        disconnect: () => Promise<void>;
+      };
+    };
+  }
+}
 
 // Connect wallet
 const connectWallet = async () => {
-  const user = await fcl.authenticate();
-  return user.addr;
-}
+  try {
+    console.log('Attempting to connect to Plug wallet...');
+    
+    if (typeof window === 'undefined' || !window.ic?.plug) {
+      throw new Error('Plug wallet not found. Please install the Plug wallet extension.');
+    }
+    
+    const hasAllowed = await window.ic.plug.requestConnect();
+    
+    if (hasAllowed) {
+      console.log('Plug wallet is connected');
+      setIsConnected(true);
+      if (window.ic.plug.principalId) {
+        setAddress(window.ic.plug.principalId);
+      }
+      return window.ic.plug.principalId;
+    } else {
+      console.log('Plug wallet connection was refused');
+      throw new Error('Wallet connection refused');
+    }
+  } catch (error) {
+    console.error('Failed to connect wallet:', error);
+    throw error;
+  }
+};
 
 // Disconnect wallet
-const disconnectWallet = () => {
-  fcl.unauthenticate();
-}
+const disconnectWallet = async () => {
+  try {
+    if (typeof window !== 'undefined' && window.ic?.plug) {
+      await window.ic.plug.disconnect();
+    }
+    setAddress(null);
+    setIsConnected(false);
+  } catch (error) {
+    console.error('Failed to disconnect wallet:', error);
+  }
+};
 ```
 
 ### Transaction Execution
 ```typescript
 // Purchase insurance policy
-const purchasePolicy = async (policyId: string, coverage: number, duration: number) => {
-  const transactionId = await fcl.mutate({
-    cadence: `
-      import InsurancePolicy from 0xInsurance
-      
-      transaction(policyId: String, coverage: UFix64, duration: UInt64) {
-        prepare(signer: AuthAccount) {
-          let policy = getAccount(policyId)
-            .getCapability(/public/InsurancePolicy)
-            .borrow<&InsurancePolicy.Policy>()
-            ?? panic("Could not borrow Policy")
-            
-          policy.purchase(
-            buyer: signer.address,
-            coverage: coverage,
-            duration: duration
-          )
-        }
-      }
-    `,
-    args: (arg, t) => [
-      arg(policyId, t.String),
-      arg(coverage.toFixed(8), t.UFix64),
-      arg(duration, t.UInt64)
-    ],
-    payer: fcl.authz,
-    proposer: fcl.authz,
-    authorizations: [fcl.authz]
-  });
-  
-  return fcl.tx(transactionId).onceSealed();
+const purchasePolicy = async (policyId: string, coverage: bigint, duration: bigint) => {
+  try {
+    // Make sure Plug wallet is connected
+    if (typeof window === 'undefined' || !window.ic?.plug) {
+      throw new Error('Plug wallet not connected');
+    }
+
+    // Create an actor to interact with the insurance canister
+    const insuranceActor = await window.ic.plug.createActor({
+      canisterId: process.env.NEXT_PUBLIC_INSURANCE_CANISTER_ID || '',
+      interfaceFactory: insuranceIDL,
+    });
+
+    // Call the insurance policy purchase method
+    const result = await insuranceActor.purchasePolicy({
+      policyId: policyId,
+      coverage: coverage,
+      duration: duration
+    });
+    
+    return result;
+  } catch (error) {
+    console.error('Policy purchase failed:', error);
+    throw error;
+  }
 }
 ```
 
@@ -131,14 +159,14 @@ npm install
 
 2. Set up environment variables:
 ```env
-NEXT_PUBLIC_FLOW_NETWORK=testnet
-NEXT_PUBLIC_INSURANCE_CONTRACT_ADDRESS=0xYourContractAddress
+NEXT_PUBLIC_DFX_NETWORK=local
+NEXT_PUBLIC_INSURANCE_CANISTER_ID=your_canister_id
 HUMANITY_API_KEY=your_api_key
 ```
 
-3. Deploy Cadence contracts:
+3. Deploy canisters:
 ```bash
-flow project deploy --network=testnet
+dfx deploy --network=ic
 ```
 
 4. Run development server:
@@ -148,14 +176,14 @@ npm run dev
 
 ## Smart Contract Deployment
 
-1. Deploy InsurancePool contract:
+1. Deploy InsurancePool canister:
 ```bash
-flow accounts add-contract InsurancePool ./cadence/contracts/InsurancePool.cdc
+dfx deploy InsurancePool
 ```
 
-2. Deploy InsurancePolicy contract:
+2. Deploy InsurancePolicy canister:
 ```bash
-flow accounts add-contract InsurancePolicy ./cadence/contracts/InsurancePolicy.cdc
+dfx deploy InsurancePolicy
 ```
 
 ## Security Considerations
@@ -166,7 +194,7 @@ flow accounts add-contract InsurancePolicy ./cadence/contracts/InsurancePolicy.c
 - Regular security updates and monitoring
 
 ## Testing
-Run contract tests:
+Run canister tests:
 ```bash
-flow test ./cadence/tests
+dfx test
 ```
