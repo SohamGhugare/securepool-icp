@@ -10,7 +10,7 @@ declare global {
       plug?: {
         requestConnect: () => Promise<boolean>;
         isConnected: () => Promise<boolean>;
-        agent?: any;
+        agent?: unknown;
         principalId?: string;
         disconnect: () => Promise<void>;
       };
