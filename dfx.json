@@ -1,0 +1,33 @@
+{
+  "canisters": {
+    "InsurancePool": {
+      "main": "contracts/InsurancePool.mo",
+      "type": "motoko"
+    },
+    "InsurancePolicy": {
+      "main": "contracts/InsurancePolicy.mo",
+      "type": "motoko"
+    },
+    "frontend": {
+      "dependencies": [
+        "InsurancePool",
+        "InsurancePolicy"
+      ],
+      "frontend": {
+        "entrypoint": "frontend/app/index.html"
+      },
+      "source": [
+        "frontend/app/assets",
+        "frontend/app/build"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+} 
