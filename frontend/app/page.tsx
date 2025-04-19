@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto leading-relaxed font-medium">
             Secure your digital assets with our innovative insurance protocol. 
-            Provide liquidity or get coverage - all powered by Ethereum&apos;s security.
+            Provide liquidity or get coverage - all powered by ICP&apos;s security.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export default function Home() {
         <div className="mt-24 grid md:grid-cols-3 gap-8">
           <FeatureCard
             title="Secure Coverage"
-            description="Protected by Ethereum&apos;s security and smart contracts"
+            description="Protected by ICP&apos;s security and smart contracts"
             icon={
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <rect width="18" height="20" x="3" y="2" rx="2" strokeWidth="2"/>
