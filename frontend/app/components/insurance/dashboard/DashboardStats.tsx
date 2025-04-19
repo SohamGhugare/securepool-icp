@@ -15,7 +15,7 @@ export function DashboardStats({ totalCoverage, activePolicies, monthlyPremium, 
           <h3 className="text-gray-500 text-sm">Total Coverage</h3>
           <DollarSign className="h-5 w-5 text-green-600 opacity-50" />
         </div>
-        <p className="text-2xl font-bold text-gray-900 mt-2">{totalCoverage} ETH</p>
+        <p className="text-2xl font-bold text-gray-900 mt-2">{totalCoverage} ICP</p>
         <p className="text-sm text-green-600">↑ +2.5% from last month</p>
       </div>
 
@@ -33,7 +33,7 @@ export function DashboardStats({ totalCoverage, activePolicies, monthlyPremium, 
           <h3 className="text-gray-500 text-sm">Monthly Premium</h3>
           <Activity className="h-5 w-5 text-green-600 opacity-50" />
         </div>
-        <p className="text-2xl font-bold text-gray-900 mt-2">{monthlyPremium} ETH</p>
+        <p className="text-2xl font-bold text-gray-900 mt-2">{monthlyPremium} ICP</p>
         <p className="text-sm text-gray-600">Next payment in 12 days</p>
       </div>
 

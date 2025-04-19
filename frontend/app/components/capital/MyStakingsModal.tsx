@@ -65,7 +65,7 @@ export function MyStakingsModal({ isOpen, onClose }: MyStakingsModalProps) {
           <div>
             <h2 className="text-xl font-semibold text-gray-900">My Stakings</h2>
             <p className="text-sm text-gray-600 mt-1">
-              Total Staked: {totalStaked} ETH | Total Earned: {totalEarned.toFixed(8)} ETH
+              Total Staked: {totalStaked} ICP | Total Earned: {totalEarned.toFixed(8)} ICP
             </p>
           </div>
           <button 
@@ -89,7 +89,7 @@ export function MyStakingsModal({ isOpen, onClose }: MyStakingsModalProps) {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <p className="text-gray-600">Amount Staked</p>
-                    <p className="font-medium text-gray-900">{position.amount} ETH</p>
+                    <p className="font-medium text-gray-900">{position.amount} ICP</p>
                   </div>
                   <div>
                     <p className="text-gray-600">APY</p>
@@ -109,7 +109,7 @@ export function MyStakingsModal({ isOpen, onClose }: MyStakingsModalProps) {
                   </div>
                   <div className="col-span-2">
                     <p className="text-gray-600">Earned so far</p>
-                    <p className="font-medium text-bitcoin">{position.earned} ETH</p>
+                    <p className="font-medium text-bitcoin">{position.earned} ICP</p>
                   </div>
                 </div>
               </div>

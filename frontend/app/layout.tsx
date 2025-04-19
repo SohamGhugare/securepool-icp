@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SecurePool Insurance",
-  description: "Decentralized Insurance on ETH",
+  description: "Decentralized Insurance on ICP",
 };
 
 export default function RootLayout({

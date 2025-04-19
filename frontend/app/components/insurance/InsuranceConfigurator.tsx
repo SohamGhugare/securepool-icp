@@ -54,7 +54,7 @@ export function InsuranceConfigurator({ selectedPolicy, onPurchase }: InsuranceC
           <div className="space-y-4">
             <div>
               <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
-                Coverage Amount (ETH)
+                Coverage Amount (ICP)
               </label>
               <input
                 id="amount"
@@ -69,7 +69,7 @@ export function InsuranceConfigurator({ selectedPolicy, onPurchase }: InsuranceC
                 required
               />
               <p className="text-sm text-gray-600 mt-2">
-                Min: {selectedPolicy.minAmount} ETH | Max: {selectedPolicy.maxAmount} ETH
+                Min: {selectedPolicy.minAmount} ICP | Max: {selectedPolicy.maxAmount} ICP
               </p>
             </div>
 
@@ -101,7 +101,7 @@ export function InsuranceConfigurator({ selectedPolicy, onPurchase }: InsuranceC
               <div>
                 <h4 className="font-medium text-gray-900">Premium Estimate</h4>
                 <p className="text-sm text-gray-600 mt-1.5">
-                  {premium.toFixed(8)} ETH ({selectedPolicy.premiumRate}% annual rate)
+                  {premium.toFixed(8)} ICP ({selectedPolicy.premiumRate}% annual rate)
                 </p>
               </div>
             </div>
@@ -143,7 +143,7 @@ export function InsuranceConfigurator({ selectedPolicy, onPurchase }: InsuranceC
         isOpen={showSuccess}
         onClose={() => setShowSuccess(false)}
         title="Coverage Purchased!"
-        message={`Successfully purchased ${amount} ETH coverage for ${duration} days in ${selectedPolicy.name}`}
+        message={`Successfully purchased ${amount} ICP coverage for ${duration} days in ${selectedPolicy.name}`}
       />
     </>
   );

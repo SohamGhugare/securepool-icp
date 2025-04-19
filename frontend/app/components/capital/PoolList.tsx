@@ -50,7 +50,7 @@ export function PoolList({ pools, selectedPool, onSelectPool }: PoolListProps) {
                   <Shield className="h-5 w-5 text-bitcoin" />
                   <span className="text-sm">Total Staked</span>
                 </div>
-                <p className="text-lg font-semibold text-gray-900">{pool.totalStaked} ETH</p>
+                <p className="text-lg font-semibold text-gray-900">{pool.totalStaked} ICP</p>
               </div>
 
               <div className="space-y-2">

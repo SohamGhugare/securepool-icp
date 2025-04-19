@@ -12,8 +12,8 @@ export interface ActivePolicy {
   id: string;
   title: string;
   icon: string;
-  currentCoverage: string; // Now in ETH
-  monthlyPremium: string; // Now in ETH
+  currentCoverage: string; // Now in ICP
+  monthlyPremium: string; // Now in ICP
   expiresIn: number;
 }
 
@@ -63,16 +63,16 @@ export const MOCK_ACTIVE_POLICIES: ActivePolicy[] = [
     id: '1',
     title: 'Smart Contract Coverage',
     icon: '📝',
-    currentCoverage: '2.45 ETH',
-    monthlyPremium: '0.00735 ETH',
+    currentCoverage: '2.45 ICP',
+    monthlyPremium: '0.00735 ICP',
     expiresIn: 152
   },
   {
     id: '2',
     title: 'Wallet Protection',
     icon: '🔐',
-    currentCoverage: '5.00 ETH',
-    monthlyPremium: '0.0025 ETH',
+    currentCoverage: '5.00 ICP',
+    monthlyPremium: '0.0025 ICP',
     expiresIn: 243
   }
 ]; 

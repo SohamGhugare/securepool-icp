@@ -271,14 +271,14 @@ export function Marketplace() {
                           <div className="flex justify-between items-center">
                             <span className="text-gray-900">Monthly Premium:</span>
                             <span className="font-medium text-gray-900">
-                              {(selectedCoverage.premiumRate * coverageAmount).toFixed(6)} ETH
+                              {(selectedCoverage.premiumRate * coverageAmount).toFixed(6)} ICP
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center">
                             <span className="text-gray-900">Total Premium:</span>
                             <span className="font-medium text-gray-900">
-                              {calculatePremium()} ETH
+                              {calculatePremium()} ICP
                             </span>
                           </div>
                           
@@ -293,7 +293,7 @@ export function Marketplace() {
                             <div className="flex justify-between items-center text-lg">
                               <span className="font-medium text-gray-900">Total Cost:</span>
                               <span className="font-bold text-bitcoin">
-                                {calculatePremium()} ETH
+                                {calculatePremium()} ICP
                               </span>
                             </div>
                           </div>
@@ -332,7 +332,7 @@ export function Marketplace() {
                               <div className="mt-2 space-y-1">
                                 <div className="flex justify-between text-sm">
                                   <span className="text-gray-600">Monthly Premium:</span>
-                                  <span className="font-medium text-gray-900">{calculatePremium()} ETH</span>
+                                  <span className="font-medium text-gray-900">{calculatePremium()} ICP</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
                                   <span className="text-gray-600">Coverage Period:</span>
@@ -340,7 +340,7 @@ export function Marketplace() {
                                 </div>
                                 <div className="flex justify-between text-sm">
                                   <span className="text-gray-600">Coverage Amount:</span>
-                                  <span className="font-medium text-gray-900">{coverageAmount} ETH</span>
+                                  <span className="font-medium text-gray-900">{coverageAmount} ICP</span>
                                 </div>
                               </div>
                             </div>
@@ -409,7 +409,7 @@ export function Marketplace() {
                   <h3 className="text-gray-500 text-sm">Total Coverage</h3>
                   <DollarSign className="h-5 w-5 text-bitcoin opacity-50" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900 mt-2">12.45 ETH</p>
+                <p className="text-2xl font-bold text-gray-900 mt-2">12.45 ICP</p>
                 <span className="text-green-600 text-sm flex items-center mt-2">
                   <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M12 7l-5 5 1.4 1.4L12 9.8l3.6 3.6L17 12l-5-5z" />
@@ -434,7 +434,7 @@ export function Marketplace() {
                   <h3 className="text-gray-500 text-sm">Monthly Premium</h3>
                   <Activity className="h-5 w-5 text-bitcoin opacity-50" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900 mt-2">0.0145 ETH</p>
+                <p className="text-2xl font-bold text-gray-900 mt-2">0.0145 ICP</p>
                 <span className="text-gray-600 text-sm mt-2 block">
                   Next payment in 12 days
                 </span>
@@ -466,7 +466,7 @@ export function Marketplace() {
                         <div className="text-3xl">🛡️</div>
                         <div>
                           <h3 className="font-medium text-gray-900">Exchange Hack Protection</h3>
-                          <p className="text-sm text-gray-600">Coverage: 5.00 ETH</p>
+                          <p className="text-sm text-gray-600">Coverage: 5.00 ICP</p>
                         </div>
                       </div>
                       <span className="px-2.5 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
@@ -474,7 +474,7 @@ export function Marketplace() {
                       </span>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Premium: 0.005 ETH/month</span>
+                      <span className="text-gray-600">Premium: 0.005 ICP/month</span>
                       <span className="text-gray-600">Expires in 89 days</span>
                     </div>
                   </div>
@@ -486,7 +486,7 @@ export function Marketplace() {
                         <div className="text-3xl">📝</div>
                         <div>
                           <h3 className="font-medium text-gray-900">Smart Contract Coverage</h3>
-                          <p className="text-sm text-gray-600">Coverage: 2.45 ETH</p>
+                          <p className="text-sm text-gray-600">Coverage: 2.45 ICP</p>
                         </div>
                       </div>
                       <span className="px-2.5 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
@@ -494,7 +494,7 @@ export function Marketplace() {
                       </span>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Premium: 0.00735 ETH/month</span>
+                      <span className="text-gray-600">Premium: 0.00735 ICP/month</span>
                       <span className="text-gray-600">Expires in 152 days</span>
                     </div>
                   </div>
@@ -506,7 +506,7 @@ export function Marketplace() {
                         <div className="text-3xl">🔑</div>
                         <div>
                           <h3 className="font-medium text-gray-900">Wallet Recovery Protection</h3>
-                          <p className="text-sm text-gray-600">Coverage: 5.00 ETH</p>
+                          <p className="text-sm text-gray-600">Coverage: 5.00 ICP</p>
                         </div>
                       </div>
                       <span className="px-2.5 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
@@ -514,7 +514,7 @@ export function Marketplace() {
                       </span>
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Premium: 0.0025 ETH/month</span>
+                      <span className="text-gray-600">Premium: 0.0025 ICP/month</span>
                       <span className="text-gray-600">Expires in 243 days</span>
                     </div>
                   </div>
@@ -533,7 +533,7 @@ export function Marketplace() {
                     <div className="w-2 h-2 rounded-full bg-green-500"></div>
                     <div className="flex-1">
                       <p className="text-gray-900">Premium Payment Processed</p>
-                      <p className="text-sm text-gray-600">0.005 ETH for Exchange Hack Protection</p>
+                      <p className="text-sm text-gray-600">0.005 ICP for Exchange Hack Protection</p>
                     </div>
                     <span className="text-sm text-gray-600">2 days ago</span>
                   </div>
@@ -549,7 +549,7 @@ export function Marketplace() {
                     <div className="w-2 h-2 rounded-full bg-orange-500"></div>
                     <div className="flex-1">
                       <p className="text-gray-900">Coverage Increased</p>
-                      <p className="text-sm text-gray-600">Wallet Recovery Protection increased to 5.00 ETH</p>
+                      <p className="text-sm text-gray-600">Wallet Recovery Protection increased to 5.00 ICP</p>
                     </div>
                     <span className="text-sm text-gray-600">1 week ago</span>
                   </div>
@@ -601,7 +601,7 @@ export function Marketplace() {
                   <h3 className="text-gray-500 text-sm">Total Payout</h3>
                   <DollarSign className="h-5 w-5 text-bitcoin opacity-50" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900 mt-2">1.5 ETH</p>
+                <p className="text-2xl font-bold text-gray-900 mt-2">1.5 ICP</p>
                 <span className="text-gray-600 text-sm mt-2 block">
                   Lifetime payouts
                 </span>
@@ -637,7 +637,7 @@ export function Marketplace() {
                               Processing
                             </span>
                           </div>
-                          <p className="text-sm text-gray-600 mt-1">Claim Amount: 0.75 ETH</p>
+                          <p className="text-sm text-gray-600 mt-1">Claim Amount: 0.75 ICP</p>
                         </div>
                       </div>
                       <button className="text-sm text-orange-600 hover:text-orange-700">
@@ -669,7 +669,7 @@ export function Marketplace() {
                               Completed
                             </span>
                           </div>
-                          <p className="text-sm text-gray-600 mt-1">Claim Amount: 0.75 ETH</p>
+                          <p className="text-sm text-gray-600 mt-1">Claim Amount: 0.75 ICP</p>
                         </div>
                       </div>
                       <button className="text-sm text-green-600 hover:text-green-700">
@@ -689,7 +689,7 @@ export function Marketplace() {
                     </div>
                     <div className="mt-4 p-3 bg-green-100 rounded-lg text-sm text-green-800">
                       <p className="font-medium">Claim successfully processed</p>
-                      <p className="mt-1">Payout of 0.75 ETH was processed on July 15, 2023</p>
+                      <p className="mt-1">Payout of 0.75 ICP was processed on July 15, 2023</p>
                     </div>
                   </div>
                 </div>

@@ -69,7 +69,7 @@ export function StakingForm({ pool }: StakingFormProps) {
           <form id="staking-form" onSubmit={handleStake} className="space-y-6">
             <div>
               <label htmlFor="amount" className="block text-sm font-medium text-gray-900 mb-2">
-                Stake Amount (ETH)
+                Stake Amount (ICP)
               </label>
               <input
                 id="amount"
@@ -84,7 +84,7 @@ export function StakingForm({ pool }: StakingFormProps) {
                 required
               />
               <p className="text-sm text-gray-600 mt-2">
-                Min: {pool.minStake} ETH | Max: {pool.maxStake} ETH
+                Min: {pool.minStake} ICP | Max: {pool.maxStake} ICP
               </p>
             </div>
 
@@ -114,7 +114,7 @@ export function StakingForm({ pool }: StakingFormProps) {
                 <div>
                   <h4 className="font-medium text-gray-900">Estimated Returns</h4>
                   <p className="text-sm text-gray-600 mt-1.5">
-                    {estimatedReturns.toFixed(8)} ETH ({pool.currentAPY}% APY)
+                    {estimatedReturns.toFixed(8)} ICP ({pool.currentAPY}% APY)
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export function StakingForm({ pool }: StakingFormProps) {
             )}
           </button>
           <p className="text-center text-sm text-gray-600 mt-3">
-            Stake ETH to earn passive rewards from insurance premiums
+            Stake ICP to earn passive rewards from insurance premiums
           </p>
         </div>
       </div>
@@ -155,7 +155,7 @@ export function StakingForm({ pool }: StakingFormProps) {
         isOpen={showSuccess}
         onClose={() => setShowSuccess(false)}
         title="Staking Successful!"
-        message={`Successfully staked ${amount} ETH for ${duration} days in ${pool.name}`}
+        message={`Successfully staked ${amount} ICP for ${duration} days in ${pool.name}`}
       />
 
       <MyStakingsModal 

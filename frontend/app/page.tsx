@@ -16,7 +16,7 @@ export default function Home() {
             <div className="flex items-center justify-center gap-4 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-700">
               Powered by{" "}
               <span className="text-green-600 inline-block hover:scale-105 transition-transform bg-green-50 px-4 py-2 rounded-lg">
-                ETH
+                ICP
               </span>
             </div>
           </h1>

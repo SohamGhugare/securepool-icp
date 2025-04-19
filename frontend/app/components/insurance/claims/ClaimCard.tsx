@@ -23,7 +23,7 @@ export function ClaimCard({ status, icon, title, amount, progress, completedDate
                 {status === 'processing' ? 'Processing' : 'Completed'}
               </span>
             </div>
-            <p className="text-sm text-gray-600 mt-1">Claim Amount: {amount} ETH</p>
+            <p className="text-sm text-gray-600 mt-1">Claim Amount: {amount} ICP</p>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ export function ClaimCard({ status, icon, title, amount, progress, completedDate
         {completedDate && (
           <div className="mt-4 p-3 bg-green-100 rounded-lg text-sm text-green-800">
             <p className="font-medium">Claim successfully processed</p>
-            <p className="mt-1">Payout of {amount} ETH was processed on {completedDate}</p>
+            <p className="mt-1">Payout of {amount} ICP was processed on {completedDate}</p>
           </div>
         )}
       </div>

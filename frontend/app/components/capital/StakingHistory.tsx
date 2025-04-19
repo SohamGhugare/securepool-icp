@@ -54,12 +54,12 @@ export function StakingHistory() {
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 mt-1">
-                  {position.amount} ETH at {position.apy}% APY
+                  {position.amount} ICP at {position.apy}% APY
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-sm font-medium text-gray-900">
-                  Earned: {position.earned} ETH
+                  Earned: {position.earned} ICP
                 </p>
                 <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
                   <Clock className="h-3 w-3" />

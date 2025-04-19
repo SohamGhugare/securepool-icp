@@ -91,7 +91,7 @@ export function FileClaimForm({ isOpen, onClose, onSubmit, activePolicies = [] }
               <option value="">Select a policy</option>
               {activePolicies.map(policy => (
                 <option key={policy.id} value={policy.id}>
-                  {policy.title} - Coverage: {policy.currentCoverage} ETH
+                  {policy.title} - Coverage: {policy.currentCoverage} ICP
                 </option>
               ))}
             </select>
@@ -100,7 +100,7 @@ export function FileClaimForm({ isOpen, onClose, onSubmit, activePolicies = [] }
           {/* Claim Amount */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-2">
-              Claim Amount (ETH)
+              Claim Amount (ICP)
             </label>
             <input 
               type="number"

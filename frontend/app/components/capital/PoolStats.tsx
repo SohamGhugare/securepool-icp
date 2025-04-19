@@ -15,7 +15,7 @@ export function PoolStats({ totalStaked, totalEarnings, activeStakes, averageAPY
           <h3 className="text-gray-600 text-sm">Total Staked</h3>
           <DollarSign className="h-5 w-5 text-bitcoin opacity-50" />
         </div>
-        <p className="text-2xl font-bold text-gray-900 mt-2">{totalStaked} ETH</p>
+        <p className="text-2xl font-bold text-gray-900 mt-2">{totalStaked} ICP</p>
       </div>
 
       <div className="bg-white rounded-xl p-6 shadow-sm">
@@ -23,7 +23,7 @@ export function PoolStats({ totalStaked, totalEarnings, activeStakes, averageAPY
           <h3 className="text-gray-600 text-sm">Total Earnings</h3>
           <TrendingUp className="h-5 w-5 text-bitcoin opacity-50" />
         </div>
-        <p className="text-2xl font-bold text-gray-900 mt-2">{totalEarnings} ETH</p>
+        <p className="text-2xl font-bold text-gray-900 mt-2">{totalEarnings} ICP</p>
       </div>
 
       <div className="bg-white rounded-xl p-6 shadow-sm">
