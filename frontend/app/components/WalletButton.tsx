@@ -65,7 +65,7 @@ export const WalletButton = () => {
               <div className="mt-2 space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-500">Address:</span>
-                  <span className="text-sm font-mono font-medium text-gray-700">{address}</span>
+                  <span className="text-sm font-mono font-medium text-gray-700">{address.slice(0, 6)}...{address.slice(-4)}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-500">Network:</span>
@@ -109,7 +109,7 @@ export const WalletButton = () => {
                 <div>
                   <h3 className="font-semibold text-gray-900">Disconnect Wallet</h3>
                   <p className="text-gray-600 mt-1">
-                    Are you sure you want to disconnect your Ethereum wallet? You will need to reconnect it to use the app.
+                    Are you sure you want to disconnect your Plug wallet? You will need to reconnect it to use the app.
                   </p>
                 </div>
               </div>
@@ -145,7 +145,7 @@ export const WalletButton = () => {
         disabled={isLoading}
         className="px-4 py-2 rounded-xl bg-green-50 text-green-700 hover:bg-green-100 transition-all font-bold disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isLoading ? 'Connecting...' : 'Connect Flow Wallet'}
+        {isLoading ? 'Connecting...' : 'Connect Plug Wallet'}
       </button>
       {error && (
         <p className="text-red-500 text-sm">{error}</p>

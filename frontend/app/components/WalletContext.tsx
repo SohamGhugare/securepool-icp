@@ -1,31 +1,21 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import * as fcl from '@onflow/fcl';
 import { VerificationDialog } from './ui/VerificationDialog';
 
-interface FlowService {
-  f_type: string;
-  f_vsn: string;
-  type: string;
-  uid: string;
-  endpoint: string;
-  provider?: {
-    address: string;
-    name: string;
-  };
-  identity?: {
-    address: string;
-  };
-}
-
-interface FlowUser {
-  f_type: string;
-  f_vsn: string;
-  addr: string | null;
-  cid: string;
-  loggedIn: boolean;
-  services: FlowService[];
+// Define type for window with IC Plug
+declare global {
+  interface Window {
+    ic?: {
+      plug?: {
+        requestConnect: () => Promise<boolean>;
+        isConnected: () => Promise<boolean>;
+        agent?: any;
+        principalId?: string;
+        disconnect: () => Promise<void>;
+      };
+    };
+  }
 }
 
 interface WalletContextType {
@@ -42,75 +32,64 @@ export function WalletProvider({ children }: { children: ReactNode }) {
   const [address, setAddress] = useState<string | null>(null);
   const [showVerification, setShowVerification] = useState(false);
 
-  // Initialize FCL configuration only on client side
+  // Check if wallet is already connected on mount
   useEffect(() => {
-    fcl.config({
-      'app.detail.title': 'SecurePool Insurance',
-      'flow.network': 'testnet',
-      'accessNode.api': 'https://rest-testnet.onflow.org',
-      'discovery.wallet': 'https://fcl-discovery.onflow.org/testnet/authn',
-      'discovery.authn.endpoint': 'https://fcl-discovery.onflow.org/api/testnet/authn',
-    });
-
-    // Clean up any existing session on mount
-    fcl.unauthenticate();
-
-    // Subscribe to user authentication changes
-    const unsubscribe = fcl.currentUser.subscribe((user: FlowUser) => {
-      console.log('User auth changed:', user);
-      // Only consider user connected if both loggedIn is true AND we have an address
-      if (user.loggedIn && user.addr) {
-        setAddress(user.addr);
-        setIsConnected(true);
-      } else {
-        // If either condition is false, consider the user disconnected
-        setAddress(null);
-        setIsConnected(false);
-        // Force disconnect if we're in an invalid state
-        if (user.loggedIn && !user.addr) {
-          fcl.unauthenticate();
+    const checkConnection = async () => {
+      if (typeof window !== 'undefined' && window.ic?.plug) {
+        try {
+          const connected = await window.ic.plug.isConnected();
+          if (connected) {
+            setIsConnected(true);
+            if (window.ic.plug.principalId) {
+              setAddress(window.ic.plug.principalId);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to check Plug wallet connection:', error);
         }
       }
-    });
-
-    return () => {
-      unsubscribe();
     };
+
+    checkConnection();
   }, []);
 
   const connectWallet = async () => {
     try {
-      console.log('Attempting to connect...');
-      // Disconnect any existing user first
-      await fcl.unauthenticate();
-      await fcl.authenticate();
+      console.log('Attempting to connect to Plug wallet...');
       
-      // Wait for the user data to be updated
-      return new Promise<void>((resolve, reject) => {
-        const timeout = setTimeout(() => {
-          reject(new Error('Connection timeout'));
-        }, 10000); // 10 second timeout
-
-        const unsubscribe = fcl.currentUser.subscribe((user: FlowUser) => {
-          if (user.loggedIn && user.addr) {
-            clearTimeout(timeout);
-            unsubscribe();
-            setIsConnected(true);
-            setShowVerification(true);
-            resolve();
-          }
-        });
-      });
+      if (typeof window === 'undefined' || !window.ic?.plug) {
+        throw new Error('Plug wallet not found. Please install the Plug wallet extension.');
+      }
+      
+      const hasAllowed = await window.ic.plug.requestConnect();
+      
+      if (hasAllowed) {
+        console.log('Plug wallet is connected');
+        setIsConnected(true);
+        if (window.ic.plug.principalId) {
+          setAddress(window.ic.plug.principalId);
+        }
+        setShowVerification(true);
+      } else {
+        console.log('Plug wallet connection was refused');
+        throw new Error('Wallet connection refused');
+      }
     } catch (error) {
       console.error('Failed to connect wallet:', error);
       throw error;
     }
   };
 
-  const disconnect = () => {
-    fcl.unauthenticate();
-    setAddress(null);
-    setIsConnected(false);
+  const disconnect = async () => {
+    try {
+      if (typeof window !== 'undefined' && window.ic?.plug) {
+        await window.ic.plug.disconnect();
+      }
+      setAddress(null);
+      setIsConnected(false);
+    } catch (error) {
+      console.error('Failed to disconnect wallet:', error);
+    }
   };
 
   return (

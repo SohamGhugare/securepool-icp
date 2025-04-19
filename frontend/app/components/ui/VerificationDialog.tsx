@@ -32,10 +32,10 @@ export function VerificationDialog({ isOpen, onClose }: VerificationDialogProps)
           <div className="flex flex-col items-center">
             <Loader2 className="h-8 w-8 text-green-600 animate-spin mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Generating Verifiable Identity...
+              Connecting to Plug Wallet...
             </h3>
             <p className="text-sm text-gray-600 text-center">
-              Powered by Humanity Protocol
+              Powered by ICP
             </p>
           </div>
         ) : (
@@ -44,7 +44,7 @@ export function VerificationDialog({ isOpen, onClose }: VerificationDialogProps)
               <Check className="h-5 w-5 text-green-600" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Successfully Generated
+              Successfully Connected
             </h3>
           </div>
         )}
